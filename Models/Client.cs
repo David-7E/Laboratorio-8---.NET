@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using LAB8_David_Belizario.Data;
 
 namespace LAB8_David_Belizario.Models;
 

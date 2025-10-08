@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using LAB8_David_Belizario.Models;
+﻿using LAB8_David_Belizario.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LAB8_David_Belizario.Data;

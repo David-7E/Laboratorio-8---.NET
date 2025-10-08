@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using LAB8_David_Belizario.DTOs;
 using LAB8_David_Belizario.Services.IServices;
 using Microsoft.AspNetCore.Mvc;

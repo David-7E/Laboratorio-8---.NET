@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace LAB8_David_Belizario.DTOs;
 
 public record ClientDto(int Id, string Name, string Email);
