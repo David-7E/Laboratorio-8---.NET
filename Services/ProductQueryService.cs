@@ -18,6 +18,7 @@ public sealed class ProductQueryService : IProductQueryService
     {
         return await _unitOfWork.Products
             .Query()
+            .AsNoTracking() // AsNoTracking() para eficiencia - Paso 2
             .Where(product => product.Price > minPrice)
             .OrderBy(product => product.Price)
             .Select(product => new ProductDto(product.ProductId, product.Name, product.Description, product.Price))
@@ -28,6 +29,7 @@ public sealed class ProductQueryService : IProductQueryService
     {
         return await _unitOfWork.Products
             .Query()
+            .AsNoTracking() // AsNoTracking() para eficiencia - Paso 2
             .OrderByDescending(product => product.Price)
             .Select(product => new ProductDto(product.ProductId, product.Name, product.Description, product.Price))
             .FirstOrDefaultAsync(cancellationToken);
@@ -37,6 +39,7 @@ public sealed class ProductQueryService : IProductQueryService
     {
         var average = await _unitOfWork.Products
             .Query()
+            .AsNoTracking() // AsNoTracking() para eficiencia - Paso 2
             .Select(product => (decimal?)product.Price)
             .AverageAsync(cancellationToken);
 
@@ -47,6 +50,7 @@ public sealed class ProductQueryService : IProductQueryService
     {
         return await _unitOfWork.Products
             .Query()
+            .AsNoTracking()
             .Where(product => product.Description == null || product.Description == string.Empty)
             .OrderBy(product => product.Name)
             .Select(product => new ProductDto(product.ProductId, product.Name, product.Description, product.Price))
@@ -57,6 +61,7 @@ public sealed class ProductQueryService : IProductQueryService
     {
         return await _unitOfWork.OrderDetails
             .Query()
+            .AsNoTracking()
             .Where(detail => detail.Order.ClientId == clientId)
             .GroupBy(detail => new { detail.Product.ProductId, detail.Product.Name, detail.Product.Description, detail.Product.Price })
             .OrderBy(group => group.Key.Name)
@@ -64,3 +69,6 @@ public sealed class ProductQueryService : IProductQueryService
             .ToListAsync(cancellationToken);
     }
 }
+
+
+//Comentario a probar para commit

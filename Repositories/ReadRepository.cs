@@ -15,10 +15,13 @@ public class ReadRepository<TEntity> : IReadRepository<TEntity>
         Set = Context.Set<TEntity>();
     }
 
-    public IQueryable<TEntity> Query() => Set.AsNoTracking();
+    public IQueryable<TEntity> Query() => Set.AsNoTracking(); // AsNoTracking() para eficiencia - Paso 2
 
     public async Task<TEntity?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         return await Set.FindAsync(new object[] { id }, cancellationToken);
     }
 }
+
+
+

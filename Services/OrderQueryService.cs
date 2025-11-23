@@ -18,6 +18,7 @@ public sealed class OrderQueryService : IOrderQueryService
     {
         return await _unitOfWork.OrderDetails
             .Query()
+            .AsNoTracking()
             .Where(detail => detail.OrderId == orderId)
             .OrderBy(detail => detail.OrderDetailId)
             .Select(detail => new OrderProductDetailDto(detail.Product.Name, detail.Quantity))
@@ -28,6 +29,7 @@ public sealed class OrderQueryService : IOrderQueryService
     {
         var total = await _unitOfWork.OrderDetails
             .Query()
+            .AsNoTracking()
             .Where(detail => detail.OrderId == orderId)
             .Select(detail => (int?)detail.Quantity)
             .SumAsync(cancellationToken);
@@ -39,6 +41,7 @@ public sealed class OrderQueryService : IOrderQueryService
     {
         return await _unitOfWork.Orders
             .Query()
+            .AsNoTracking() 
             .Where(order => order.OrderDate > fromDate)
             .OrderBy(order => order.OrderDate)
             .Select(order => new OrderSummaryDto(order.OrderId, order.OrderDate, order.ClientId, order.Client.Name))
@@ -49,6 +52,7 @@ public sealed class OrderQueryService : IOrderQueryService
     {
         return await _unitOfWork.Orders
             .Query()
+            .AsNoTracking()
             .OrderBy(order => order.OrderDate)
             .Select(order => new OrderWithDetailsDto(
                 order.OrderId,
@@ -60,5 +64,15 @@ public sealed class OrderQueryService : IOrderQueryService
                     .ToList()
             ))
             .ToListAsync(cancellationToken);
+    }
+
+    public Task<OrderWithDetailsDto?> GetOrderWithProductDetailsAsync(int orderId, CancellationToken cancellationToken = default)
+    {
+        return _unitOfWork.Orders.GetOrderWithProductDetailsAsync(orderId, cancellationToken); // Paso 3
+    }
+
+    public Task<IReadOnlyList<SalesByClientDto>> GetSalesByClientAsync(CancellationToken cancellationToken = default)
+    {
+        return _unitOfWork.Orders.GetSalesByClientAsync(cancellationToken); // Paso 5
     }
 }

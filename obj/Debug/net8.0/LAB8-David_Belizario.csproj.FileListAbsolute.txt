@@ -137,3 +137,4 @@ D:\6to\Desarrollo de Aplicaciones Empresariales Avanzado\LAB8-David_Belizario\LA
 D:\6to\Desarrollo de Aplicaciones Empresariales Avanzado\LAB8-David_Belizario\LAB8-David_Belizario\obj\Debug\net8.0\LAB8-David_Belizario.pdb
 D:\6to\Desarrollo de Aplicaciones Empresariales Avanzado\LAB8-David_Belizario\LAB8-David_Belizario\obj\Debug\net8.0\LAB8-David_Belizario.genruntimeconfig.cache
 D:\6to\Desarrollo de Aplicaciones Empresariales Avanzado\LAB8-David_Belizario\LAB8-David_Belizario\obj\Debug\net8.0\ref\LAB8-David_Belizario.dll
+D:\6to\Desarrollo de Aplicaciones Empresariales Avanzado\LAB8-David_Belizario\LAB8-David_Belizario\obj\Debug\net8.0\LAB8-David_Belizario.sourcelink.json

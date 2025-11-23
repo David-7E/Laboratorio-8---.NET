@@ -30,6 +30,22 @@ public class ClientReportsController : ControllerBase
         return Ok(result);
     }
 
+    // Paso 2
+    [HttpGet("with-orders")]
+    public async Task<ActionResult<IReadOnlyList<ClientWithOrdersDto>>> GetClientsWithOrders(CancellationToken cancellationToken = default)
+    {
+        var result = await _clientQueries.GetClientsWithOrdersAsync(cancellationToken);
+        return Ok(result);
+    }
+
+    // Paso 4
+    [HttpGet("with-product-totals")]
+    public async Task<ActionResult<IReadOnlyList<ClientProductTotalDto>>> GetClientsWithProductTotals(CancellationToken cancellationToken = default)
+    {
+        var result = await _clientQueries.GetClientsWithProductTotalsAsync(cancellationToken);
+        return Ok(result);
+    }
+
     [HttpGet("by-product/{productId:int}")]
     public async Task<ActionResult<IReadOnlyList<ClientDto>>> GetClientsByProduct(int productId, CancellationToken cancellationToken = default)
     {

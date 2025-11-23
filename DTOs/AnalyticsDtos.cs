@@ -7,3 +7,16 @@ public record OrderSummaryDto(int OrderId, DateTime OrderDate, int ClientId, str
 public record OrderWithDetailsDto(int OrderId, DateTime OrderDate, string ClientName, IReadOnlyCollection<OrderProductDetailDto> Details);
 public record ClientOrderCountDto(int ClientId, string ClientName, int OrderCount);
 public record ProductAveragePriceDto(decimal AveragePrice);
+
+// Paso 2: DTOs para relacion Cliente-Pedidos
+public record ClientOrderDto(int OrderId, DateTime OrderDate);
+public record ClientWithOrdersDto(int ClientId, string ClientName, IReadOnlyCollection<ClientOrderDto> Orders);
+
+// Paso 4: DTO para totales de productos por cliente
+public record ClientProductTotalDto(
+    int ClientId, 
+    string ClientName, 
+    int TotalProducts);
+
+// Paso 5: DTO para ventas totales por cliente
+public record SalesByClientDto(string ClientName, decimal TotalSales);

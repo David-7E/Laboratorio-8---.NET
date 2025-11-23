@@ -43,4 +43,18 @@ public class OrderReportsController : ControllerBase
         var result = await _orderQueries.GetOrdersWithDetailsAsync(cancellationToken);
         return Ok(result);
     }
+    
+    [HttpGet("{orderId:int}/with-products")]
+    public async Task<ActionResult<OrderWithDetailsDto>> GetOrderWithProducts(int orderId, CancellationToken cancellationToken = default)
+    {
+        var result = await _orderQueries.GetOrderWithProductDetailsAsync(orderId, cancellationToken);
+        return result is null ? NotFound() : Ok(result);
+    }
+    
+    [HttpGet("sales-by-client")]
+    public async Task<ActionResult<IReadOnlyList<SalesByClientDto>>> GetSalesByClient(CancellationToken cancellationToken = default)
+    {
+        var result = await _orderQueries.GetSalesByClientAsync(cancellationToken);
+        return Ok(result);
+    }
 }
